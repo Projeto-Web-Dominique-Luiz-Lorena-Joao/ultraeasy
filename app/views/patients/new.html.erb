@@ -1,0 +1,7 @@
+<div class="max-w-2xl">
+  <h1 class="text-3xl font-bold text-gray-900 mb-6"><%= @patient.new_record? ? 'Novo Paciente' : 'Editar Paciente' %></h1>
+  
+  <%= render 'form', patient: @patient %>
+  
+  <%= link_to 'Voltar', patients_path, class: 'mt-4 inline-block bg-gray-600 hover:bg-gray-700 text-white font-medium py-2 px-4 rounded-lg transition' %>
+</div>

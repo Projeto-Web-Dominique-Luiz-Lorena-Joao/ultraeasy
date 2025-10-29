@@ -1,0 +1,7 @@
+<div class="max-w-2xl">
+  <h1 class="text-3xl font-bold text-gray-900 mb-6"><%= @address.new_record? ? 'Novo Endereço' : 'Editar Endereço' %></h1>
+  
+  <%= render 'form', address: @address %>
+  
+  <%= link_to 'Voltar', addresses_path, class: 'mt-4 inline-block bg-gray-600 hover:bg-gray-700 text-white font-medium py-2 px-4 rounded-lg transition' %>
+</div>

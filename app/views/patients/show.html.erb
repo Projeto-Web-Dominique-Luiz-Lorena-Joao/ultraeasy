@@ -1,0 +1,42 @@
+<div class="max-w-4xl">
+  <h1 class="text-3xl font-bold text-gray-900 mb-6">Paciente</h1>
+  
+  <div class="bg-white rounded-lg shadow p-6 mb-6">
+    <h3 class="text-2xl font-bold text-gray-900 mb-4"><%= @patient.name %></h3>
+    
+    <div class="grid grid-cols-2 gap-4 mb-6">
+      <div>
+        <p class="text-sm font-medium text-gray-500">Email</p>
+        <p class="mt-1 text-sm text-gray-900"><%= @patient.email %></p>
+      </div>
+      <div>
+        <p class="text-sm font-medium text-gray-500">Telefone</p>
+        <p class="mt-1 text-sm text-gray-900"><%= @patient.phone %></p>
+      </div>
+      <div>
+        <p class="text-sm font-medium text-gray-500">Data de Nascimento</p>
+        <p class="mt-1 text-sm text-gray-900"><%= @patient.birthdate.strftime('%d/%m/%Y') if @patient.birthdate %></p>
+      </div>
+    </div>
+    
+    <hr class="my-6">
+    
+    <h4 class="text-lg font-bold text-gray-900 mb-3">Endereço</h4>
+    <div class="text-sm text-gray-700 space-y-1">
+      <p><%= @patient.address.street %>, <%= @patient.address.number %></p>
+      <% if @patient.address.complement.present? %>
+        <p><%= @patient.address.complement %></p>
+      <% end %>
+      <p><%= @patient.address.neighborhood %></p>
+      <p><%= @patient.address.city %> - <%= @patient.address.state %></p>
+      <p><%= @patient.address.country %></p>
+    </div>
+    
+    <%= link_to 'Ver endereço completo', @patient.address, class: 'mt-4 inline-block text-blue-600 hover:text-blue-900 text-sm font-medium' %>
+  </div>
+
+  <div class="flex space-x-4">
+    <%= link_to 'Editar', edit_patient_path(@patient), class: 'bg-yellow-600 hover:bg-yellow-700 text-white font-medium py-2 px-4 rounded-lg transition' %>
+    <%= link_to 'Voltar', patients_path, class: 'bg-gray-600 hover:bg-gray-700 text-white font-medium py-2 px-4 rounded-lg transition' %>
+  </div>
+</div>
