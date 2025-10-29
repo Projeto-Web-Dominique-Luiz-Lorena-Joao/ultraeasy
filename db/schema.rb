@@ -10,9 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_10_22_222300) do
+ActiveRecord::Schema[8.0].define(version: 2025_10_29_184213) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
+
+  create_table "addresses", force: :cascade do |t|
+    t.string "street"
+    t.string "number"
+    t.string "complement"
+    t.string "neighborhood"
+    t.string "city"
+    t.string "state"
+    t.string "country"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "companies", force: :cascade do |t|
     t.string "name"
@@ -43,6 +55,17 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_22_222300) do
     t.index ["user_id"], name: "index_doctor_specialities_on_user_id"
   end
 
+  create_table "patients", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.date "birthdate"
+    t.string "phone"
+    t.bigint "address_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["address_id"], name: "index_patients_on_address_id"
+  end
+
   create_table "specialities", force: :cascade do |t|
     t.string "name"
     t.text "description"
@@ -69,4 +92,5 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_22_222300) do
   add_foreign_key "doctor_companies", "users"
   add_foreign_key "doctor_specialities", "specialities"
   add_foreign_key "doctor_specialities", "users"
+  add_foreign_key "patients", "addresses"
 end
